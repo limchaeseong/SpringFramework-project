@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="CreateMapper">
+   <insert id="insertClub" parameterType="club">
+      INSERT INTO CLUB VALUES(
+         C_ID.NEXTVAL
+        , #{c_name}
+        , sysdate
+        , #{c_photo}
+        , #{c_open}
+        <choose>
+           <when test="cg_id != 0">
+            , #{cg_id}           
+           </when>
+           <otherwise>
+            , null
+           </otherwise>
+        </choose>
+        , null
+        , null
+       )
+      <selectKey keyProperty="sq" resultType="int" order="AFTER">
+         SELECT C_ID.CURRVAL FROM DUAL 
+      </selectKey>
+   </insert>
+   
+    <select id="selectClub" parameterType="int" resultType="club">
+        SELECT * FROM CLUB WHERE C_ID = #{sq}
+     </select>
+     
+     <select id="clubList" parameterType="club" resultType="club">
+        SELECT * FROM CLUB
+     </select>
+     
+     <select id="clubListBya_id" parameterType="int" resultType="club">
+        SELECT * FROM CLUB
+     </select>
+     
+     <select id="viewClub" parameterType="int" resultType="club">
+        SELECT * FROM CLUB WHERE C_ID = #{c_id}
+     </select>
+     
+     <update id="updateDiscription" parameterType="club">
+ 		UPDATE CLUB 
+ 		SET C_DISCRIPTION = #{c_discription} 
+ 			WHERE C_ID = #{c_id}
+ 	 </update>
+</mapper>

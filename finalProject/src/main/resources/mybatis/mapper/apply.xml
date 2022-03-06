@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ApplyMapper">
+	<!-- 모임 가입 -->
+	<insert id="insertApply" parameterType="apply">
+		INSERT INTO AP VALUES(
+			AP_ID.NEXTVAL
+		  , 'Y'
+		  , #{c_id}
+		  , #{a_id}
+		)
+	</insert>
+	
+	<!-- 멤버수 조회 -->
+	<select id="selectApCount" parameterType="apply" resultType="int">
+		SELECT COUNT(*) FROM AP WHERE C_ID = #{c_id}
+	</select>
+	
+	<!-- 로그인 정보 조회 -->
+	<select id="selectAccount" parameterType="apply" resultType="account">
+		SELECT * FROM ACCOUNT WHERE A_ID = #{a_id}
+	</select>
+	
+	<!-- c_id로 모임장 a_id 가져오기 -->
+	<select id="selectA_id" parameterType="int" resultType="apply">
+		SELECT MIN(AP_ID) KEEP(DENSE_RANK FIRST ORDER BY AP_ID) AS AP_ID,
+        	   MIN(AP_STATE) KEEP(DENSE_RANK FIRST ORDER BY AP_ID) AS AP_STATE,
+               MIN(C_ID) KEEP(DENSE_RANK FIRST ORDER BY AP_ID) AS C_ID,
+			   MIN(A_ID) KEEP(DENSE_RANK FIRST ORDER BY AP_ID) AS A_ID
+		FROM AP WHERE C_ID = ${c_id}
+	</select>
+	
+	<!-- c_id a_id로 모입 가입상태 확인하기 -->	
+	<select id="applyState" parameterType="apply" resultType="apply">
+		SELECT * FROM AP 
+	  	 LEFT OUTER JOIN CLUB ON CLUB.C_ID = AP.C_ID
+	  	 LEFT OUTER JOIN ACCOUNT ON ACCOUNT.A_ID = AP.A_ID
+		WHERE ACCOUNT.A_ID = #{a_id} AND CLUB.C_ID = #{c_id}
+	</select>
+	<!-- c_id로 카테고리 네임 가져오기 -->
+	<select id="selectCgName" parameterType="int" resultType="category">
+		SELECT CG.CG_ID, CG.CG_NAME FROM CLUB
+			LEFT OUTER JOIN CG ON CG.CG_ID = CLUB.CG_ID
+			WHERE CLUB.C_ID = #{c_id}
+	</select>
+</mapper>

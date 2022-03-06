@@ -1,0 +1,115 @@
+@charset "UTF-8";
+
+header {
+	height: 150px;
+	margin: 2em;
+	/*background-color: red;*/
+}
+header div{
+	text-align: center;
+}
+
+#bound {
+	margin: 0 auto;
+	width: 80%;
+	height: 600px; 
+	/*border: 1px solid #000;*/
+}
+nav {
+	width: 50%;
+    float: left;
+    box-sizing: border-box;
+   /* background: lightyellow; */
+}
+
+section {
+ 	width: 50%;
+ 	height: 100%;
+    float: right;
+    box-sizing: border-box;     
+/*    padding-top: 3em;  
+   background-color: lightblue; */
+}
+#form_div{
+	width: 70%;
+	height: 500px;
+ /*	background-color: lightgray; */
+    border: 2px solid #023860;
+    border-radius: 10px;
+    padding: 30px;
+    margin: 2em auto;
+}
+#btn_div {
+	margin: 20px 10px;
+}
+section div {
+	text-align: center;
+}
+footer div {
+ 	height: 50px;
+    clear: both;
+    box-sizing: border-box;       
+ /*   background-color: lightgreen;*/
+}
+input {
+	font-size: 20px;
+	color: black;
+    border: 2px solid #023860;
+    border-radius: 10px;
+    width: 85%;
+    height: 70px;
+    margin: 10px;
+}
+button#login_btn{
+	font-size: 20px;
+	font-weight: 2px;
+	color: white;
+	cursor:pointer;
+	background-color: #023860;
+    border: 1px solid #023860;
+    border-radius: 10px;
+    width: 85%;
+    height: 70px;
+    margin-top: 10px;
+}
+button.link_btn{
+	background:transparent;
+	overflow:visible;
+	cursor:pointer;
+	border: none; 
+	font-size: 16px;
+	font-weight: 2px;
+	margin: 10px 20px;
+	
+}
+
+#id_input {
+	background-image: url('/resources/img/account/shadow.png');
+    background-position: 15px center;
+    background-size: 2em;
+    background-repeat: no-repeat;
+	width: 65%;	
+    padding: 5px 40px;
+    text-indent: 30px;
+}
+#pass_input {
+	background-image: url('/resources/img/account/locked.png'); 
+  	background-position: 20px center;
+    background-size: 1.5em;
+    background-repeat: no-repeat;
+	width: 65%;	
+    padding: 5px 40px;
+    text-indent: 30px;
+}
+
+button#login_btn:hover {
+
+}
+
+button.link_btn:hover {
+	background-color: #96f6f4; 
+}
+/*아이디 패스워드 틀린 경우 경고문구*/
+span#fail {
+	color: red;
+}

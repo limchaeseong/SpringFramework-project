@@ -1,0 +1,201 @@
+@charset "UTF-8";
+
+.createBody {
+	margin: 0 auto;
+	width: 840px;
+	height: 720px;
+	padding-top: 120px;
+	background-color: #FCF5EB;
+}
+
+.form {
+	width: 840px;
+	height: 720px;
+	display: inline-block;
+}
+
+.mainName { 
+	width: 840px;
+	padding-bottom: 40px;
+}
+
+.mainName h4 {
+	margin: 0 auto;
+	width: 840px;
+	text-align: left;
+	font-size: 14px;
+	color: #444444;
+}
+
+.makeType h4 {
+	margin: 0 auto;
+	padding-bottom: 19px;
+	width: 840px;
+	text-align: left;
+	font-size: 14px;
+	color: #444444;
+}
+ 
+.coverChoice h4{
+	display: inline-block;
+	margin: 0 auto;
+	font-size: 13px;
+    font-weight: 400;
+    color: #444444;
+}
+
+.coverChoice {
+	display: inline-block;
+	height: 20px;
+	width: 510px;
+	margin-left: 10px;
+   	margin-top: 4px;
+}
+
+.btnPrevious {
+	width: 22px;
+    height: 23px;
+    background:url('/resources/img/club/previous.png') no-repeat;
+    border: #FCF5EB;
+    cursor: pointer;
+    
+}
+
+.btnNext {
+	width: 22px;
+    height: 23px;
+    background:url('/resources/img/club/next.png') no-repeat;
+    border: #FCF5EB;
+    cursor: pointer;
+    float: right;
+}
+
+.pictures {
+	 width: 120px;
+	 height: 90;
+	 display: block;
+	 float:left;
+   	 margin-left: 10px;
+   	 margin-top: 10px;
+   	 cursor: pointer;
+}
+
+.clubName {
+	width: 820px;
+	font-size: 38px;
+	font-weight: 300;
+	border-top: none;
+	border-right: none;
+	border-left: none;
+	border-width: 1px;
+	padding-top: 15px;
+	background-color: #FCF5EB;
+}
+
+.clubName:focus {
+	outline-style: none;
+}
+
+.select_img {
+	width: 300px;
+	height: 225px;
+	float:left
+}
+
+.coverMain {
+	width: 840px;
+}
+
+ul {
+	margin: 0 auto;
+}
+
+li {
+	list-style: none;
+}
+
+.navi {
+	float:right;
+	line-height: 23px;
+}
+
+.paging {
+	float: left;
+	font-size: 12px;
+}
+
+.makeArea {
+	display: inline-block;
+	margin-top: 10px;
+}
+
+.makeType {
+	margin-top: 48px;
+}
+
+.makeText {
+	margin: 0 auto;
+	font-size: 12px;
+	color: #666666;
+}
+
+.typeList {
+	padding: 35px 25px 8px 44px;
+	background-color: white;
+	height: 100px;	
+	border-bottom: 1px solid #d3d3d3;
+}
+
+.checkLabel {
+	font-size: 14px;
+    font-weight: 400;
+    color: #666;
+}
+
+.msg {
+	display: block;
+	padding-left: 32px; 
+	padding-top: 4px;
+	width: 250px;
+	font-size: 13px;
+    font-weight: 400;
+    color: #666;
+}
+
+.typeListItem {
+	width: 50%;
+    float: left;
+}
+
+.checkInput {
+	width: 20px;
+	height: 20px;
+	cursor: pointer;
+	background-image: url('/resources/img/club/checkOff.png');
+}
+
+.btnArea {
+	margin-top: 40px;
+	width: 840px;
+	text-align: center;
+}
+
+.btnCancel {
+	background-color: white;
+	border-style: 1px;
+	color: #598BAF;
+	border-color: #598BAF;
+	min-width: 140px;
+	height: 44px;
+	cursor: pointer;
+	box-shadow: none;
+}
+
+.btnConfirm {
+	background-color: #598BAF;
+	border-style: none;
+	color: white;
+	min-width: 140px;
+	height: 44px;
+	cursor: pointer;
+}

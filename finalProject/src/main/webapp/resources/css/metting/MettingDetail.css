@@ -1,0 +1,79 @@
+@charset "UTF-8";
+
+* {
+		margin: 0 0;	
+		padding: 0 0;
+	    font-family: '나눔바른고딕';
+	}
+	body {
+	    background-color: rgb(252, 245, 235);
+	    margin-bottom: 100px;
+	}	
+	div.image_logo{
+	    text-align: center;
+	    margin-top: 20px;
+	}
+	div.title_div {
+	    text-align: center;
+	    margin-top: 30px;
+	    margin-bottom: 20px;
+	}
+	img.logo {
+	    display: inline-block;
+	    width: 200px;
+	    height: 100px;
+	
+	    cursor: pointer;
+	}
+	span.title{
+		font-size:31px;
+		color: rgb(33, 78, 110);
+	    font-weight: bold;
+	    border-bottom:5px solid;
+		
+	}
+	div.meeting_area, div.button_area{
+		width:500px;
+		margin:auto;
+	}
+	div.button_area{
+		margin-top:15px;
+		text-align:center;
+	}
+	div.line{
+		border-bottom:1px solid rgb(89, 139, 175);
+	}
+	label {
+		display:inline-block;
+		text-align:center;
+		width:90px;
+	    margin: 20px 10px;
+	
+	    font-size: 20px;
+	    font-weight: bold;
+	    color: rgb(33, 78, 110);
+	}
+	input.input_area{
+		width:350px;
+	    padding: 0 10px;
+	
+	  
+
+		border : none;
+		border-left : 1px solid rgb(89, 139, 175);
+		
+	    font-size: 20px;
+	    color: rgb(33, 78, 110);
+	    background-color: rgb(252, 245, 235);
+	}
+	input.input_area:focus, textarea.input_ds_area:focus{
+		outline:none;
+	}
+	button.button1{
+		border-radius:10px;
+		width:80px;
+		font-size:25px;
+		padding:1px 3px;
+		color : white;
+		background-color : rgb(33, 78, 110);
+	}

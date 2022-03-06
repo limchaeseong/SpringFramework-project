@@ -1,0 +1,217 @@
+@charset "UTF-8";
+
+ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+a {
+    color: #222;
+    text-decoration: none;
+}
+
+.myPage {
+	margin: 60px 0 0;
+}
+
+/* 로그인: 내 모임목록(시작) */
+.myClubListArea {
+	position: relative;
+	padding: 37px 0 15px;
+	background-color: rgb(252, 245, 235);
+	width: 1100px;
+}
+
+.mainWrap {
+	position: relative;
+	width: 1100px;
+	margin: 0 auto;
+}
+
+.head .mainTitle {
+	top: 122px;
+	left: 115px;
+	width: 300px;
+	height: 60px;
+	color: #6a6363;
+	text-align: center;
+}
+
+.head .mainTitle2 {
+	top: 122px;
+	left: 115px;
+	height: 60px;
+	color: #6a6363;
+	text-align: center;
+}
+
+.clubList {
+	font-size: 0;
+}
+
+.clubListItem {
+	margin: 0 0 25px 25px;
+    display: inline-block;
+    vertical-align: top;
+    font-size: 0;
+    padding-bottom: 15px;
+}
+
+.uCover {
+	height: 210px;
+    background: #fff;
+    position: relative;
+    display: inline-block;
+    width: 186px;
+    vertical-align: top;
+    border-radius: 2px;
+    font-size: 13px;
+    font-weight: 400;
+}
+
+.clubInner {
+	position: relative;
+	box-shadow: 3px 3px 3px 3px #dadada;
+}
+
+a.clubCreate {
+	display: block;
+    position: relative;
+    background-color: #fff;
+}
+
+.cover {
+	position: relative;
+	width: 186px;
+    height: 135px;
+    text-align: center;
+}
+.ClubCover {
+	display: block;
+    position: relative;
+}
+
+.ClubCoverImg {
+	display: inline-block;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    border-radius: 0;
+    width: 100%;
+}
+
+.coverInner {
+	display: block;
+    position: relative;
+    overflow: hidden;
+    background: #ebebeb;
+    border-radius: 2px;
+    font-size: 0;
+    line-height: 0;
+    box-shadow: 3px 3px 3px 3px #dadada;
+}
+
+.coverImg {
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    border-radius: 0;
+    width: 186px;
+    height: 135px;
+}
+
+/* 밴드 만들기 아이콘 */
+.iconcreate {
+    margin-top: 30px;
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-size: 100px;
+    background-image: url(../img/icon/plusMe.png);
+    opacity: 50%;
+}
+
+.clubName {
+	height: 85px;
+    padding-top: 10px;
+    text-align: center;
+}
+
+.clubName_ {
+	position: relative;
+    height: 75px;
+    padding: 9px 12px 14px;
+    background-color: #fff;
+    box-shadow: 3px 3px 3px 3px #dadada;
+}
+.clubText {
+	font-size: 15px;
+    font-weight: 600;
+    color: #6e6961;
+}
+.clubText_ {
+	color: #222;
+    overflow: hidden;
+    max-height: 39px;
+    font-size: 15px;
+    text-overflow: ellipsis;
+    line-height: 1.3;
+    word-wrap: break-word;
+    word-break: break-word;
+    white-space: normal;
+}
+
+.member {
+	display: block;
+    margin-top: 2px;
+    font-size: 12px;
+    font-weight: 400;
+    color: #777;
+}
+
+/* 로그아웃 */
+.logoutMenu {
+	margin-top: 10px;
+	position: relative;
+    display: flex;
+    height: 540px;
+    width: 1100px;
+    background-color: #ccc;
+    background: url(../img/my/IMG_8998.JPG) 55% 50% no-repeat;
+    opacity: 0.8;
+    background-size: cover;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+}
+.logoImg {
+    width: 403px;
+    height: 245px;
+    background: url(../img/logo/moyeo.png) no-repeat;
+    margin-bottom: 10px;
+}
+h3.logoutTitle {
+	font-size: 46px;
+    font-weight: bold;
+    text-shadow: 0 1px 1px rgb(2 11 11 / 50%);
+    color: #fff;
+}
+
+.logoutText {
+	width: 650px;
+    margin: 18px auto 0;
+    font-size: 24px;
+    font-weight: 600;
+    color: #000;
+    text-shadow: 0 1px 1px rgb(2 11 11 / 50%);
+    line-height: 40px;
+    word-break: break-word;
+}
+
+/* 로그아웃: 홍보 문구 (끝) */
+
+
+
+

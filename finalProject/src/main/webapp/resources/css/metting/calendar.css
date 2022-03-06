@@ -1,0 +1,30 @@
+@charset "UTF-8";
+
+body{
+    background-color: rgb(252, 245, 235);
+    margin-bottom: 100px;
+    text-align:right;
+}
+
+button{
+	border-radius:10px;
+	width:100px;
+	font-size:25px;
+	padding:1px 3px;
+	color : white;
+	background-color : rgb(33, 78, 110);
+	margin-bottom:10px;
+}
+div#button_area{
+	width:95%;
+	margin:auto;
+}
+
+div#calendar{
+	width:95%;
+	margin:auto;
+	border : 1px solid rgb(33, 78, 110);
+	border-radius : 5px;
+	background-color : white;
+	padding:3px;
+}

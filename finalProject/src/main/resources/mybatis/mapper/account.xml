@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="AccountMapper">
+ 	<select id="selectAccount" parameterType="account" resultType="account"> 
+ 		<!-- SELECT * FROM ACCOUNT WHERE A_UID = #{a_uid} AND A_PW = #{a_pw} -->
+ 		SELECT * FROM ACCOUNT
+ 		<where>
+	 		<choose>
+	 			<!-- 로그인 -->
+                <when test="a_pw != null">
+                    AND A_UID = #{a_uid} AND A_PW = #{a_pw}
+                </when>
+                <!-- 카카오 로그인 -->
+                <when test="a_kakao != null">
+                    AND A_KAKAO = #{a_kakao}
+                </when>
+                <!-- 구글 로그인 -->
+                <when test="a_google != null">
+                    AND A_GOOGLE = #{a_google}
+                </when>
+                <!-- 아이디 찾기 -->
+                <when test="a_name != null">
+                    AND A_NAME = #{a_name} AND A_EMAIL = #{a_email}
+                </when>
+                <!-- 비밀번호 찾기 -->
+                <otherwise>
+                    AND A_UID = #{a_uid} AND A_EMAIL = #{a_email}
+                </otherwise>
+            </choose>
+		</where>
+ 	</select> 
+ 	<!-- 비밀번호 찾기 시 존재하는 아이디인지 체크 -->
+ 	<select id="selectA_uid" parameterType="String" resultType="String">
+ 		SELECT A_UID FROM ACCOUNT WHERE A_NAME = #{a_name}
+ 	</select>
+ 	<!-- 
+ 	<update id="updateAuthKey" parameterType="account">
+ 		UPDATE ACCOUNT SET AUTOKEY = #{authKey} WHERE USERNAME = #{username} AND EMAIL = #{email} 
+ 	</update>
+ 	 -->
+ 	<update id="updateA_pw" parameterType="HashMap">
+ 		UPDATE ACCOUNT SET A_PW = #{new_password} WHERE A_ID = #{a_id} 
+ 	</update>
+ 	<!-- api 회원가입 -->
+ 	<insert id="insertKAccount" parameterType="account">
+ 		INSERT INTO ACCOUNT VALUES(
+ 		<choose>
+	        <!-- 카카오 회원가입 -->
+	        <when test="a_kakao != null">
+			  <choose>
+		        <when test="a_email != null"> <!-- 메일 정보 제공 동의 -->
+	        	A_ID.NEXTVAL,'KKKK','KKKK','카카오로그인'
+ 				,TO_CHAR(SYSDATE, 'yyyy-mm-dd'),DEFAULT,#{a_email},'ADDRESS',01000000000,NULL,'M',#{a_kakao},NULL
+	        	</when>
+	        	<when test="a_email == null"><!-- 메일 정보 제공 비동의 -->
+	        	A_ID.NEXTVAL,'KKKK','KKKK','카카오로그인'
+				,TO_CHAR(SYSDATE, 'yyyy-mm-dd'),DEFAULT,'EMAIL','ADDRESS',01000000001,NULL,'M',#{a_kakao},NULL
+	        	</when>
+	          </choose>
+	        </when>
+	        <!-- 구글 회원가입 -->
+	        <when test="a_google != null">
+	      	  <choose>
+	        	<when test="a_email != null">
+	            A_ID.NEXTVAL,'GGGG','GGGG','구글로그인'
+	            ,TO_CHAR(SYSDATE, 'yyyy-mm-dd'),DEFAULT,#{a_email},'ADDRESS',01000000002,NULL,'W',NULL,#{a_google}
+	            </when>
+ 				<when test="a_email == null">
+ 				 A_ID.NEXTVAL,'GGGG','GGGG','구글로그인'
+ 				 ,TO_CHAR(SYSDATE, 'yyyy-mm-dd'),DEFAULT,'EMAIL','ADDRESS',01000000003,NULL,'W',NULL,#{a_google}
+				</when>
+ 			  </choose>
+	        </when>
+        </choose>
+        )
+ 	</insert>
+</mapper>

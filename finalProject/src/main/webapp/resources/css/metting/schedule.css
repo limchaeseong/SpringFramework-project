@@ -1,0 +1,41 @@
+@charset "UTF-8";
+
+
+	h1{
+		color: rgb(33, 78, 110);
+	}
+	label{
+		display:inline-block;
+		width : 80px;
+		vertical-align:top;
+		color: rgb(33, 78, 110);
+	}
+	*{
+		margin-bottom : 10px;
+	}
+	body{
+	    background-color: rgb(252, 245, 235);
+	    margin-bottom: 100px;
+	}
+	div.image_logo{
+	    text-align: center;
+	    margin-top: 20px;
+	}
+	img.logo {
+	    display: inline-block;
+	    width: 200px;
+	    height: 100px;
+	    cursor: pointer;
+	}
+	input, textarea{
+		border: 1px solid rgb(33, 78, 110);
+		border-radius:3px;
+	}
+	button{
+		border-radius:10px;
+		width:80px;
+		font-size:25px;
+		padding:1px 3px;
+		color : white;
+		background-color : rgb(33, 78, 110);
+	}

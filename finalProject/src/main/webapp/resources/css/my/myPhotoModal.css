@@ -1,0 +1,112 @@
+@charset "UTF-8";
+
+.modal_back {
+    z-index: 30000;
+    position: fixed;
+    display: flex;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding-top: 80px;
+    background: rgba(0,0,0,.75);
+    overflow: auto;
+    display: none;
+}
+
+.myPhoto_content {
+    position: relative;
+    width: 350px;
+    height: 350px;
+    margin: auto;
+    background: #fff;
+    align-self: flex-start;
+    border-radius: 2px;
+}
+
+.myPhoto_header {
+	position: relative;
+    padding: 10px 30px;
+}
+
+h1.myPhoto_title {
+	font-size: 20px;
+    font-weight: 600;
+    color: #222;
+    text-align: center;
+}
+
+.myPhoto_body {
+	margin: 10px;
+    border-top: 1px solid #dadada;
+    padding-top: 5px;
+}
+
+.body_content {
+	padding: 0 20px;
+}
+
+.photoBox {
+	position: relative;
+    text-align: center;
+}
+
+span.profileLine {
+	display: inline-block;
+    position: relative;
+    vertical-align: top;
+    font-size: 0;
+    width: 100px;
+    height: 100px;
+}
+
+.imgPhoto {
+	position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    vertical-align: top;
+}
+
+.inputfile {
+    right: 0;
+    top: 0;
+    z-index: 5;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.myPhoto_footer {
+	margin: 0 20px;
+    padding: 20px 0 25px;
+    font-size: 0;
+    text-align: center;
+}
+
+.profileBtn {
+	margin: 0 5px;
+	min-width: 109px;
+    height: 40px;
+    padding: 0 30px;
+    font-size: 16px;
+    font-weight: 600;
+   	background-color: #474e60;
+	color: #fff;
+	border: 1px solid #dadada;
+	
+}
+.myCancelBtn {
+	margin: 0 5px;
+	min-width: 109px;
+    height: 40px;
+    padding: 0 30px;
+    font-size: 16px;
+    font-weight: 600;
+   	background-color: #fff;
+	color: #474e60;
+	border: 1px solid #dadada;
+	
+}

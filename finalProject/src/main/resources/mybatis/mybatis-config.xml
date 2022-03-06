@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+	  <setting name="jdbcTypeForNull" value="NULL"/>
+	</settings>
+	<typeAliases>
+		<typeAlias type="com.web.home.account.model.AccountDTO" alias="account" />
+		<typeAlias type="com.web.home.member.model.PermissionDTO" alias="permission" />
+		<!-- 서인혜(시작) -->
+		<typeAlias type="com.web.home.main.model.clubListVO" alias="clubList" /><!-- 내 모임 -->
+		<typeAlias type="com.web.home.my.model.myVO" alias="my" /><!-- 내정보 -->
+		<typeAlias type="com.web.home.my.model.postVO" alias="post" /><!-- 내가 쓴 게시글 -->
+		<typeAlias type="com.web.home.my.model.commentVO" alias="comment" /><!-- 내가 쓴 댓글 -->
+		<typeAlias type="com.web.home.discover.model.searchClubVO" alias="clubSearch"/><!-- 모임 찾기 -->
+		<typeAlias type="com.web.home.discover.model.postBoardVO" alias="postSearch"/><!-- 게시글 찾기 -->
+		<!-- 서인혜(끝) -->
+		<typeAlias type="com.web.home.club.model.ClubVO" alias="club" />
+		<typeAlias type="com.web.home.club.model.CategoryVO" alias="category" />
+		<typeAlias type="com.web.home.club.model.ApplyVO" alias="apply" />
+		<typeAlias type="com.web.home.member.model.MemberVO" alias="member" />
+		<typeAlias type="com.web.home.chat.model.ChatVO" alias="chat" />
+		<typeAlias type="com.web.home.club.metting.model.MettingDTO" alias="metting" />
+		<typeAlias type="com.web.home.club.metting.model.MettingApplyVo" alias="mettingApply" />
+	</typeAliases>
+</configuration> 
+

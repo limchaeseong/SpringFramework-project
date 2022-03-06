@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:websocket="http://www.springframework.org/schema/websocket"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/tx https://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/websocket https://www.springframework.org/schema/websocket/spring-websocket.xsd">
+	
+	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+	<!-- 수정 -->
+	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+	 
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<annotation-driven />
+
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	<resources mapping="/resources/**" location="/resources/" />	
+	<resources mapping="/static/jq/**" location="/resources/js/" />
+	
+	<!--게시판 파일첨부 -->
+	<resources location="/WEB-INF/views/ckeditor/" mapping="/ckeditor/**" />
+	<resources location="/resources/boardFileUpload/" mapping="/boardFileUpload/**" />
+
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+	
+	<context:component-scan base-package="com.web.home" />
+	<context:component-scan base-package="com.web.home.account.controller" />
+	<context:component-scan base-package="com.web.home.account.model" />
+	<context:component-scan base-package="com.web.home.account.service" />
+	<context:component-scan base-package="com.ewb.home.utils" />	
+
+<!-- <context:property-placeholder location="classpath:/oracle/oracle_connection.prop" /> -->
+
+	<beans:bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<beans:property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></beans:property>
+		<beans:property name="url" value="jdbc:oracle:thin:@192.168.0.9:1521/XEPDB1"></beans:property>
+		<beans:property name="username" value="USER2"></beans:property>
+		<beans:property name="password" value="USER2"></beans:property>
+	</beans:bean>
+
+	<!-- 마이바티스와 연결하여 마이바티스로 데이터베이스 연결 세션 공장 생성 -->
+	<beans:bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<beans:property name="dataSource" ref="dataSource"></beans:property>
+		<beans:property name="configLocation" value="classpath:/mybatis/mybatis-config.xml"></beans:property>
+		<beans:property name="mapperLocations" value="classpath:/mybatis/mapper/*.xml"></beans:property>
+	</beans:bean>
+	
+	<!-- 마이바티스 데이터베이스 세션 공장으로부터 연결 세션 생성 -->
+	<beans:bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<beans:constructor-arg ref="sqlSessionFactory"></beans:constructor-arg>
+	</beans:bean>
+	
+	<!--1. 웹 소켓 기능을 구현한 자바 클래스를 빈으로 등록 -->
+	<beans:bean id="webSocketSample" class="com.web.home.websocket.WebSocketSample" />
+	
+	<!-- 	2. 웹 소켓 핸들러에 등록 -->
+	<websocket:handlers>
+		<websocket:mapping handler="webSocketSample" path="/websock" />
+	</websocket:handlers>
+		
+	<!-- email 인증 관련   -->
+    <beans:bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <beans:property name="host" value="smtp.gmail.com" />
+        <beans:property name="port" value="587" />
+        <beans:property name="username" value="epikbb1234@gmail.com"/>
+        <beans:property name="password" value="epikbb4321!" />
+        <beans:property name="javaMailProperties">
+            <beans:props>
+                <beans:prop key="mail.transport.protocol">smtp</beans:prop >
+                <beans:prop key="mail.smtp.auth">true</beans:prop >
+                <beans:prop key="mail.smtp.starttls.enable">true</beans:prop >
+                <beans:prop key="mail.debug">true</beans:prop >
+                <beans:prop key="mail.smtp.ssl.trust">smtp.gmail.com</beans:prop>
+                <beans:prop key="mail.smtp.ssl.protocols">TLSv1.2</beans:prop>
+            </beans:props>
+        </beans:property>
+    </beans:bean>
+    
+	<!-- 런타임시 위빙하기 -->
+	<aop:aspectj-autoproxy />
+
+	<!-- 업로드 패스 설정 --> 
+	<beans:bean class="java.lang.String" id="uploadPath">
+ 		<beans:constructor-arg value="D:/eclipse/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp2/wtpwebapps/finalProject/resources" />
+	</beans:bean>
+	
+	<!-- 일반 파일 업로드 경로 -->
+	<resources mapping="/imgUpload/**" location="/resources/imgUpload/" />
+	<resources mapping="/MettingImg/**" location="/resources/img/metting/" />
+	<resources mapping="/myProfilePhotoPath/**" location="/resources/img/my/" />
+	
+	<!-- 업로드 미팅 패스 설정 --> 
+	<beans:bean class="java.lang.String" id="MettingImgPath">
+ 		<beans:constructor-arg value="D:/eclipse/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp2/wtpwebapps/finalProject/resources" />
+	</beans:bean>
+	
+	<!-- 업로드 프로필 패스 설정 (서인혜) --> 
+	<beans:bean class="java.lang.String" id="myProfilePhotoPath">
+ 		<beans:constructor-arg value="D:/eclipse/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp2/wtpwebapps/finalProject/resources" />
+	</beans:bean>
+
+	<!-- 트랜젝션 사용하기 위해(CY) -->
+	<beans:bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<beans:property name="dataSource" ref="dataSource"></beans:property>
+	</beans:bean>
+	<beans:bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver">
+       <beans:property name="maxUploadSize" value="10485760"/>
+   </beans:bean>
+	
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+	
+	<!-- 메일 관련(CY) -->
+	<beans:bean id="mailSenderYeon" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<beans:property name="host" value="smtp.gmail.com"></beans:property>
+		<beans:property name="port" value="587"></beans:property>
+		<beans:property name="username" value="dlatlrpwjd134@gmail.com"></beans:property>
+		<beans:property name="password" value="dlatl123!"></beans:property>
+		<beans:property name="javaMailProperties">
+			<beans:props>
+				<beans:prop key="mail.transport.protocol">smtp</beans:prop >
+				<beans:prop key="mail.smtp.auth">true</beans:prop>
+				<beans:prop key="mail.smtp.starttls.enable">true</beans:prop>
+				<beans:prop key="mail.debug">true</beans:prop>
+                <beans:prop key="mail.smtp.ssl.trust">smtp.gmail.com</beans:prop>
+                <beans:prop key="mail.smtp.ssl.protocols">TLSv1.2</beans:prop>
+			</beans:props>
+		</beans:property>
+	</beans:bean>
+</beans:beans>
+

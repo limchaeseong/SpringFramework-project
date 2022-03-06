@@ -1,0 +1,194 @@
+@charset "UTF-8";
+
+main {
+	margin: 20 auto;
+	width: 540px;
+	height: auto;
+	background-color: white;
+}
+
+aside {
+	margin: 0;
+	width: 208px;
+	float:left
+}
+
+.viewBody {
+	margin: 0 auto;
+	width: 1100px;
+	height: 720px;
+	padding-top: 80px;
+	background-color: #FCF5EB;
+}
+
+.clubName {
+	cursor: pointer;
+	text-decoration: none;
+	color: black;
+	font-size: 30px;
+	font-weight: 500;
+}
+
+.memberName {
+	font-size: 14px;
+	padding-top: 8px;
+	
+}
+
+.openText {
+	padding-top: 12px;
+	font-size: 14px;
+	color: #888;
+}
+
+.clubTitle{
+	margin-left: 10px; 
+}
+
+.clubDis {
+	margin-top: 10px;
+}
+
+.btnBox {
+	padding-top: 12px;
+}
+
+.joinBtn {
+	width: 208px;
+	height: 40px;
+	font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    border-style: none;
+    background-color:  #598BAF;
+    color: #FCF5EB;
+}
+
+.memText {
+	float: left;
+}
+
+.memCount {
+	margin: 20px;
+	font-size: 20px;
+    font-weight: 600;
+}
+
+.profileImg {
+	width: 50px;
+	height: 50px;
+	border-radius: 70%;
+	float:left
+}
+
+.profileImg2 {
+	width: 200px;
+	height: 200px;
+	border-radius: 70%;	
+}
+
+.memUl  {
+	height: 50px;
+	padding: 10px;
+}
+
+.memLi {
+	height: 50px;
+	font-size: 14px;
+	line-height: 50px;
+}
+
+.setBtn {
+	float:right;
+	width: 50px;
+	height: 20px;
+	font-size: 14px;
+    cursor: pointer;
+    border-style: none;
+    background-color:  #598BAF;
+    color: #FCF5EB;
+    
+}
+
+.setBtn:hover {
+	background-color : #72afdb;
+	color:black;
+}
+
+.modifyBody {
+	width: 200px;
+	margin: 0 auto;
+}
+
+.cateName {
+	background-color: #FCF5EB;
+	border-radius: 40px;
+	width: 80px;
+	height: 20px;
+	font-size: 10px;
+	text-align:center;
+	line-height: 20px;
+	margin: 4px;
+}
+
+.area {
+	text-align: center;
+}
+
+.areaText {
+	font-size: 16px;
+	font-weight: 700;
+}
+
+.modifyBtn {
+	width: 80px;
+	height: 20px;
+	font-size: 14px;
+    cursor: pointer;
+    border-style: none;
+    background-color:  #598BAF;
+    color: #FCF5EB;
+}
+
+.modifyBtn:hover {
+	background-color : #72afdb;
+	color:black;
+}
+
+.menu_btn_area{
+  background-color :  #FCF5EB;
+}
+#menu_btn1{
+  border-radius: 15% 0% 0% 0%;
+  width:33%; 
+  height:40px;
+  border:none;
+  background-color : #486e8a;
+  font-size:18px;
+  color:white;
+}
+#menu_btn2{
+  width:33%; 
+  height:40px;
+  margin-left:-5px;
+  border:none;
+  background-color : #486e8a;
+  font-size:18px;
+  color:white;
+}
+button#menu_btn3{
+  border-radius:0% 15% 0% 0%;
+  text-decoration: underline;
+  text-underline-position: under;
+  margin-left:-6px;   
+  width:33%; 
+  height:40px;
+  border:none;
+  background-color : #486e8a;
+  font-size:18px;
+  color:white;
+}
+#menu_btn1:hover,#menu_btn2:hover,#menu_btn3:hover{
+  background-color : #72afdb;
+  color:black;
+}

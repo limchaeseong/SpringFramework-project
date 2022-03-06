@@ -1,0 +1,89 @@
+@charset "UTF-8";
+header div {
+	text-align: center;
+	margin-top: 2em;
+}
+#form_div .title {
+	text-align: center;
+	margin-bottom: 2em;
+}
+#form_div{
+	width: 90%;
+/* 	background-color: lightgray;*/
+    border: 2px solid #023860;
+    border-radius: 10px;
+    padding: 30px;
+    margin: 3em auto;
+}
+form{
+	margin: 3em 0;
+	padding:0;
+}
+div#line {
+	display: inline-block;
+}
+input {
+	font-size: 20px;
+   	color: black;
+    border: 2px solid #023860;
+    border-radius: 10px;
+    height: 50px;
+    margin: 10px;
+}
+
+#id_input {
+	background-image: url('http://localhost/final/resources/img/account/shadow.png');
+    background-position: 15px center;
+    background-size: 2em;
+    background-repeat: no-repeat;
+    padding: 5px 40px;
+    text-indent: 30px;
+}
+#email_id, #email_domain{
+	width: 25%;	
+}
+button{
+	font-size: 20px;
+	font-weight: 2px;
+	color: white;
+	cursor:pointer;
+	background-color: #023860;
+    border: 1px solid #023860;
+    border-radius: 10px;
+    height: 50px;
+}
+
+select {
+width: 25%;
+padding: .5em .5em;
+border: 2px solid #023860;
+border-radius: 10px;
+font-family: inherit;
+font-size: 20px;
+
+/*background: url('arrow.jpg') no-repeat 95% 50%;
+-webkit-appearance: none;
+-moz-appearance: none;
+*/
+appearance: none;
+margin-top: 2em;
+}
+
+.btn_align {
+	text-align: center;
+	margin: 10px;
+}
+
+#auth_div, #time_div {
+	display: inline-block;
+}
+.btn {
+	width: 400px;
+}
+.btn_margin {
+	margin-left: 0.5em;
+}
+/*findUser only*/
+.find_pop{
+	text-align: center;
+}

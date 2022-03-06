@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="MettingMapper">
+ 	<insert id="insertMetting" parameterType="metting">
+ 		INSERT INTO MT VALUES(
+ 			MT_ID.NEXTVAL,
+ 			#{MT_NAME},
+ 			#{MT_DS},
+ 			#{MT_AD},
+ 			#{MT_PRICE},
+ 			TO_DATE(#{MT_SDATE},'YYYY-MM-DD HH24:MI'),
+ 			TO_DATE(#{MT_FDATE},'YYYY-MM-DD HH24:MI'),
+ 			#{MT_PHOTO},
+ 			#{MT_P},
+ 			#{C_ID}
+ 		)
+ 	</insert>
+ 	<insert id="insertMetting2" parameterType="metting">
+ 		INSERT INTO MT VALUES(
+ 			MT_ID.NEXTVAL,
+ 			#{MT_NAME},
+ 			#{MT_DS},
+ 			#{MT_AD},
+ 			#{MT_PRICE},
+ 			TO_DATE(#{MT_SDATE},'YYYY-MM-DD HH24:MI'),
+ 			TO_DATE(#{MT_FDATE},'YYYY-MM-DD HH24:MI'),
+ 			null,
+ 			#{MT_P},
+ 			#{C_ID}
+ 		)
+ 	</insert>
+ 	<select id="selectMetting" parameterType="int" resultType="metting">
+ 		SELECT MT_ID,
+      		   MT_NAME,
+      		   MT_DS,
+      		   MT_AD,
+      		   MT_PRICE,
+      		   TO_CHAR(MT_SDATE,'YYYY-MM-DD HH24:MI') AS MT_SDATE,
+       		   TO_CHAR(MT_FDATE,'YYYY-MM-DD HH24:MI') AS MT_FDATE,
+       		   MT_PHOTO,
+       		   MT_P,
+       		   C_ID
+      		   FROM MT
+       		   WHERE C_ID=#{C_ID}
+ 	</select>
+ 	<select id="selectMettingAll" resultType="metting">
+ 		SELECT MT_ID,
+      		   MT_NAME,
+      		   MT_DS,
+      		   MT_AD,
+      		   MT_PRICE,
+      		   TO_CHAR(MT_SDATE,'YYYY-MM-DD HH24:MI') AS MT_SDATE,
+       		   TO_CHAR(MT_FDATE,'YYYY-MM-DD HH24:MI') AS MT_FDATE,
+       		   MT_PHOTO,
+       		   MT_P,
+       		   C_ID
+      		   FROM MT
+       		   WHERE TO_CHAR(MT_SDATE,'YYYYMMDD')>=TO_CHAR(SYSDATE,'YYYYMMDD')
+ 	</select>
+ 	
+ 	<select id="selectMettingAll2" resultType="metting">
+ 		SELECT MT_ID,
+      		   MT_NAME,
+      		   MT_DS,
+      		   MT_AD,
+      		   MT_PRICE,
+      		   TO_CHAR(MT_SDATE,'YYYY-MM-DD HH24:MI') AS MT_SDATE,
+       		   TO_CHAR(MT_FDATE,'YYYY-MM-DD HH24:MI') AS MT_FDATE,
+       		   MT_PHOTO,
+       		   MT_P,
+       		   C_ID
+      		   FROM MT
+ 	</select>
+ 	
+ 	<select id="applyMember" parameterType="int" resultType="metting">
+ 		SELECT * FROM MM WHERE MT_ID=#{mt_ID}
+ 	</select>
+ 	
+ 	<select id="checkMeeting" parameterType="metting" resultType="mettingApply">
+ 		SELECT MM_ID,MM_MASTER FROM MM
+             JOIN MEMBER ON (MEMBER.M_ID=MM.M_ID)
+             WHERE MEMBER.A_ID=#{MT_ID} AND MM.MT_ID=#{MT_NAME}
+ 	</select>
+ 	
+ 	<select id="Meeting" parameterType="int" resultType="metting">
+ 		SELECT * FROM MT
+				WHERE MT_ID=#{mm_no}
+ 	</select>
+ 	
+ 	
+ 	<select id="GetM_id" parameterType="metting" resultType="Integer">
+ 		SELECT M_ID FROM MEMBER
+         JOIN CLUB ON(MEMBER.C_ID=CLUB.C_ID)
+         JOIN ACCOUNT ON (MEMBER.A_ID=ACCOUNT.A_ID)
+         WHERE MEMBER.C_ID=#{MT_ID} AND ACCOUNT.A_ID=#{m_id}
+ 	</select>
+ 	
+ 	<select id="GetM_idByMt_id" parameterType="metting" resultType="Integer">
+ 		SELECT M_ID FROM MEMBER 
+			JOIN MT ON(MT.C_ID=MEMBER.C_ID) 
+			WHERE MEMBER.A_ID=#{m_id} AND MT.MT_ID=#{MT_ID} AND ROWNUM &lt;= 1
+ 	</select>
+ 	
+ 	<select id="GetMt_id" resultType="Integer">
+ 		SELECT MT_ID FROM MT WHERE ROWNUM &lt;= 1 ORDER BY MT_ID DESC
+ 	</select>
+ 	
+ 	<insert	id="applyMetting" parameterType="metting">
+ 		INSERT INTO MM VALUES(
+ 			MM_ID.NEXTVAL,
+ 			#{m_id},
+ 			#{MT_ID},
+ 			'N'
+ 		)
+ 	</insert>
+ 	
+ 	<insert	id="applyMettingM" parameterType="metting">
+ 		INSERT INTO MM VALUES(
+ 			MM_ID.NEXTVAL,
+ 			#{C_ID},
+ 			#{MT_ID},
+ 			'Y'
+ 		)
+ 	</insert>
+ 	
+ 	<delete id="cancleMetting" parameterType="metting">
+ 		DELETE FROM MM WHERE M_ID=#{m_id} AND MT_ID=#{MT_ID}
+ 	</delete>
+</mapper>

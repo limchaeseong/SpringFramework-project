@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="clubListMapper">
+<select id="clubList" parameterType="clubList" resultType="clubList">
+    SELECT
+		A.A_ID,
+        A.A_UID,
+        C.C_ID,
+        C.C_NAME,
+        C.C_SDATE,
+        C.C_PHOTO,
+		M.M_ID
+	FROM ACCOUNT A JOIN MEMBER M ON A.A_ID = M.A_ID
+    JOIN CLUB C ON M.C_ID = C.C_ID
+    WHERE A.A_ID = #{a_id}
+    ORDER BY C.C_ID
+</select>
+</mapper>

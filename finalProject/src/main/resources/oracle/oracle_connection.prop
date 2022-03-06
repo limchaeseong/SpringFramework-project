@@ -1,0 +1,12 @@
+# 오라클 접속을 위한 계정 정보가 있는 파일
+#user = user1
+#password = Database5125
+#cloud-url = jdbc:oracle:thin:@testdb_medium?TNS_ADMIN=c:/Users/machi/eclipse/Wallet_testDB
+#local-url = jdbc:oracle:thin:@localhost:1521/XEPDB1
+
+# final project
+user = finalproject
+password = Finalpro4321
+
+cloud-url = jdbc:oracle:thin:@testdb_medium?TNS_ADMIN=c:/Users/lmry/eclipse/Wallet_testDB
+#local-url = jdbc:oracle:thin:@localhost:1521/XEPDB1

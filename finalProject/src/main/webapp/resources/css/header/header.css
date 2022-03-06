@@ -1,0 +1,114 @@
+@charset "UTF-8";
+
+* {
+	margin: 0 auto;
+}
+
+header#header {
+	position: fixed;
+	margin: 0 0;
+	width: 100%;
+	min-width: 1100px;
+	left: 0;
+	top:0;
+	z-index: 20000;
+}
+
+.inner {
+	position: relative;
+	background-color: rgb(89, 139, 175);
+	max-width: 1100px;
+	height: 50px;
+	
+}
+
+.widget {
+	position: absolute;
+	top: 16px;
+	right: 0;
+}
+
+.widget > li {
+	position: relative;
+	float: left;
+	padding-left: 2px;
+	padding-right: 2px;
+	margin-right: 20px;
+	color: #fff;
+}
+
+a {
+	text-decoration:none;
+	cursor: pointer;
+}
+
+ul {
+	list-style-type: none;
+	-webkit-padding-start:0px;
+}
+
+.info {
+	position:absolute;
+	width: 140px;
+	top: 40px;
+	right: 0;
+	background-color: #fff;
+	border: 1px solid #777;
+    border-radius: 2px;
+    border-bottom: 1px solid #e3e3e3;
+	border-radius:2px;
+	padding: 5px 0 5px 0;
+	list-style-type: none;
+}
+
+.infoMenu {
+	display: block;
+	min-width: 100px;
+    min-height: 32px;
+    padding: 8px 10px;
+    font-size: 14px;
+    line-height: 40px;
+    color: #333;
+}
+
+#myBandList {
+	position: relative;
+	padding: 37px 0 15px;
+	background-color: rgb(252, 245, 235);
+}
+
+
+.mainWrap {
+	position: relative;
+	width: 1034px;
+	margin: 0 auto;
+}
+.head .sectionTitle {
+	position: adsolute;
+	top: 122px;
+	left: 115px;
+	width: 300px;
+	height: 60px;
+}
+
+.uCover .bandCreate .cover {
+	padding-top: 55px;
+	text-align: center;
+}
+.uCover .bandCreate .cover .icon.-create {
+    width: 60px;
+    height: 60px;
+    overflow: hidden;
+    display: inline-block;
+    background-repeat: no-repeat;
+    text-indent: -999px;
+    background-image: url(../images/spr_icons.png);
+    background-position: -62px -223px;
+}
+
+.uCover .bandCreate .bandName {
+    height: 85px;
+    padding-top: 10px;
+    text-align: center;
+}
+

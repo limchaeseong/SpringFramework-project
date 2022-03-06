@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="MemberMapper">
+	<!-- 모임 생성시 모임장 자동 권한 주기 -->
+	<insert id="memberManager" parameterType="member">
+		INSERT INTO MEMBER VALUES(
+			M_ID.NEXTVAL
+		  , 'Y'
+		  , 'Y'
+		  , 'Y'
+		  , 'Y'
+		  , null
+		  , #{a_id}
+		  , #{c_id}
+		)
+	</insert>  
+	<!-- 모임 가입 인원 권한 주기 -->
+	<insert id="memberApply" parameterType="member">
+		INSERT INTO MEMBER VALUES(
+			M_ID.NEXTVAL
+		  , 'N'
+		  , 'N'
+		  , 'N'
+		  , 'N'
+		  , null
+		  , #{a_id}
+		  , #{c_id}
+		)
+	</insert>  
+	<!-- 멤버 리스트 가져오기 -->
+	<select id="selectMember" parameterType="member" resultType="member">
+ 	 	SELECT * FROM MEMBER WHERE C_ID = #{c_id}
+ 	 </select>
+ 	
+ 	<!-- 멤버 내 정보 보기 -->
+	<select id="memberA_id" parameterType="member" resultType="account">
+ 	 	SELECT * FROM MEMBER 
+ 	 	LEFT OUTER JOIN ACCOUNT ON ACCOUNT.A_ID = MEMBER.A_ID 
+ 	 	WHERE MEMBER.A_ID = #{a_id} AND MEMBER.C_ID = #{c_id}
+ 	</select>
+ 	 
+ 	<!-- 나와 모임장 제외한 멤버 Account 리스트 보기 -->
+	<select id="memberList" parameterType="member" resultType="account">
+ 	 	SELECT * FROM MEMBER 
+ 	 	LEFT OUTER JOIN ACCOUNT ON ACCOUNT.A_ID = MEMBER.A_ID 
+ 	 	WHERE MEMBER.C_ID = #{c_id} AND ACCOUNT.A_ID NOT IN (#{a_id}) AND P_CHIEF = 'N'
+ 	 	ORDER BY MEMBER.M_ID ASC
+ 	</select>
+ 	
+ 	 <!-- 모임장 권환 확인, 정보보기 -->
+	<select id="manager" parameterType="member" resultType="account">
+ 	 	SELECT * FROM MEMBER 
+ 	 	LEFT OUTER JOIN ACCOUNT ON ACCOUNT.A_ID = MEMBER.A_ID 
+ 	 	WHERE C_ID = #{c_id} AND P_CHIEF = 'Y'
+ 	</select>
+ 	
+ 	<!-- 내가 모임장인지 여부 확인 -->
+ 	<select id="imManager" parameterType="member" resultType="String">
+ 		SELECT P_CHIEF FROM MEMBER
+ 		WHERE C_ID = #{c_id} AND A_ID = #{a_id} AND P_CHIEF = 'Y'
+ 	</select>
+ 	
+ 	<delete id="memberDelete" parameterType="member">
+ 		DELETE FROM MEMBER WHERE A_ID = #{a_id} AND C_ID = #{c_id}
+ 	</delete>
+ 	
+ 	 <delete id="applyDelete" parameterType="apply">
+ 		DELETE FROM AP WHERE A_ID = #{a_id} AND C_ID = #{c_id}
+ 	</delete>
+ 
+  	<delete id="ccDelete" parameterType="int">
+ 		DELETE FROM CLUB WHERE C_ID = #{c_id}
+ 	</delete>	
+</mapper>

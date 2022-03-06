@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="BoardMapper"> <!-- p_name not null 이면 Y, null이면 N -->
+	<insert id="insertBoard" parameterType="HashMap">
+		insert into board values(
+			B_ID.nextVAL
+	     , '${b_name}'
+	     , '${b_content}'
+	     ,
+	     <choose>
+           <when test="p_name != null">
+           'Y'
+           </when>
+           <otherwise>
+           'N'
+           </otherwise>
+         </choose>
+	     , SYSDATE
+	     , 0
+	     , 0
+	     , ${c_id}
+	     , (SELECT M_ID FROM MEMBER WHERE A_ID = ${a_id} AND C_ID = ${c_id})
+	     )
+		<selectKey keyProperty="seq" resultType="int" order="AFTER">
+			SELECT B_ID.CURRVAL FROM DUAL
+		</selectKey> 
+	</insert>
+	<insert id="insertPhoto" parameterType="HashMap">
+		insert into photo values(P_ID.NEXTVAL, '${p_name}', ${b_id})
+	</insert>
+</mapper>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="MyMapper">
+	<!-- 로그인한 내 정보조회 -->
+	<select id="selectMyInfo" parameterType="my" resultType="my">
+		SELECT * FROM ACCOUNT WHERE A_ID = #{a_id}
+	</select>
+ 	<!-- 내가 쓴 게시글 조회 -->
+ 	<select id="myPost" parameterType="post" resultType="post">
+ 		SELECT A.A_ID,
+           A.A_UID,
+           A.A_PHOTO,
+           B.B_ID,
+           B.B_NAME,
+           B.B_CONTENT,
+           B.B_DATE,
+           B.B_GOOD,
+           C.C_ID,
+           C.C_NAME
+         FROM BOARD B
+            JOIN CLUB C ON B.C_ID = C.C_ID
+            JOIN MEMBER M ON M.C_ID = C.C_ID
+            JOIN ACCOUNT A ON A.A_ID = M.A_ID
+         WHERE A.A_ID = #{a_id}
+            AND B.B_ID IS NOT NULL 
+            AND B.M_ID = M.M_ID ORDER BY B.B_ID DESC
+ 	</select>
+ 	<!-- 내가 쓴 게시판 글 좋아요 +1(미적용)-->
+ 	<update id="selfLikeCount">
+ 		UPDATE BOARD SET B_GOOD = B_GOOD + 1 WHERE B_ID = #{b_id}
+ 	</update>
+ 	<!-- 좋아요 수 확인 -->
+ 	<select id="myBoardLikeCount" resultType="int">
+ 		SELECT COUNT(B_GOOD) FROM BOARD WHERE B_ID = #{b_id}
+ 	</select>
+ 	<!-- 게시클 댓글 수 확인(미적용) -->
+ 	<select id="myBoardCmCount" resultType="int">
+ 		SELECT COUNT(CM_CONTENT) FROM BOARD B JOIN CM ON B.B_ID = CM.B_ID WHERE B.B_ID = #{b_id}
+ 	</select>
+ 	<!-- 내가 쓴 댓글 조회 -->
+ 	<select id="myComment" parameterType="comment" resultType="comment">
+ 		SELECT CM.CM_ID,
+ 			CM.CM_CONTENT,
+ 			CM.CM_DATE,
+ 			B.B_ID,
+ 			B.B_NAME,
+ 			B.B_CONTENT,
+ 			B.B_DATE,
+ 			C.C_PHOTO,
+ 			C.C_NAME,
+ 			A.A_UID
+ 		FROM ACCOUNT A
+				LEFT OUTER JOIN MEMBER M ON A.A_ID = M.A_ID
+				LEFT OUTER JOIN CLUB C ON C.C_ID = M.C_ID
+				LEFT OUTER JOIN BOARD B ON B.C_ID =  C.C_ID
+				LEFT OUTER JOIN CM ON CM.B_ID = B.B_ID
+		WHERE A.A_ID = #{a_id} 
+ 				AND CM.CM_ID IS NOT NULL
+ 			    AND CM.M_ID = M.M_ID 
+    			AND CM.B_ID = B.B_ID 
+    	ORDER BY CM.CM_ID DESC
+ 	</select>
+ 	<!-- 비밀번호 확인 -->
+ 	<select id="pwCheck" resultType="String">
+ 		SELECT A_PW FROM ACCOUNT WHERE A_ID = #{a_id}
+ 	</select>
+ 	<!-- 사진 변경 -->
+ 	<update id="photoUpdate" parameterType="my">
+ 		UPDATE ACCOUNT SET A_PHOTO = #{a_photo} WHERE A_ID = #{a_id}
+ 	</update>
+ 	<!-- 정보변경 관련 -->
+ 	<update id="pwUpdate" parameterType="my">
+ 		UPDATE ACCOUNT SET A_PW = #{a_pw} WHERE A_ID = #{a_id}
+ 	</update>
+ 	<update id="genderUpdate" parameterType="my">
+ 		UPDATE ACCOUNT SET A_GENDER = #{a_gender} WHERE A_ID = #{a_id}
+ 	</update>
+ 	<update id="birthUpdate" parameterType="my">
+ 		UPDATE ACCOUNT SET A_BDATE = #{a_bdate} WHERE A_ID = #{a_id}
+ 	</update>
+ 	 	<update id="emailUpdate" parameterType="my">
+ 		UPDATE ACCOUNT SET A_EMAIL = #{a_email} WHERE A_ID = #{a_id}
+ 	</update>
+ 	 	<update id="adUpdate" parameterType="my">
+ 		UPDATE ACCOUNT SET A_AD = #{a_ad} WHERE A_ID = #{a_id}
+ 	</update>
+ 	 	<update id="phoneUpdate" parameterType="my">
+ 		UPDATE ACCOUNT SET A_PHONE = #{a_phone} WHERE A_ID = #{a_id}
+ 	</update>
+</mapper>
